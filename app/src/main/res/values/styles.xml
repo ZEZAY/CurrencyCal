@@ -1,0 +1,21 @@
+<resources>
+
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">//titleBar
+
+        //bar in app
+        <item name="colorPrimary">@color/colorPrimaryDark</item>
+
+        //bar out app
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    //หลังAppTeme.เป็นอะไรก้ได้
+    <style name="AppTheme.SlideActivityTheme">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+
+        </style>
+
+</resources>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background_material_light"
+        tools:context=".SettingPage">
+
+    <include layout="@layout/toolbar_layout_clear"/>
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <RadioGroup
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                <Switch
+                        android:text="Switch"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" android:id="@+id/switch2"/>
+                <ToggleButton
+                        android:text="ToggleButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" android:id="@+id/toggleButton"/>
+                <CheckBox
+                        android:text="CheckBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" android:id="@+id/checkBox" />
+                <Button
+                        android:text="Button"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" android:id="@+id/button" />
+                <SeekBar
+                        style="@style/Widget.AppCompat.SeekBar.Discrete"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:max="10"
+                        android:progress="3"
+                        android:id="@+id/seekBar"/>
+                <SearchView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+            </RadioGroup>
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>
