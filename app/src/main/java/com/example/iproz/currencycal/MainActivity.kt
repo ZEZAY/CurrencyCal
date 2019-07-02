@@ -1,5 +1,6 @@
 package com.example.iproz.currencycal
 
+import android.content.Context
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -10,14 +11,24 @@ import android.view.Window
 import android.widget.Toast
 import com.example.iproz.jpcal.Adapter
 import com.example.iproz.jpcal.Hist
-import com.r0adkll.slidr.Slidr
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.toolbar_layout_clear.*
 import java.text.DecimalFormat
 
+fun Context.mainActivity(rateName: String,rateNum: String): Intent {
+    return Intent(this, MainActivity::class.java).apply {
+        this.putExtra(rateName,rateName)
+        this.putExtra(rateNum,rateNum.toFloat())
+    }
+}
+
 class MainActivity : AppCompatActivity() {
 
     var hists = arrayListOf<Hist>()
+    var rateName: String? = null
+    var rateNum: String? = null
+//    val rateName = intent!!.getStringExtra("RNs")
+//    val rateNum = intent!!.getStringExtra("RNd")!!.toFloat()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         requestWindowFeature(Window.FEATURE_NO_TITLE)
@@ -27,6 +38,8 @@ class MainActivity : AppCompatActivity() {
         //ใส่toolbar
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayShowTitleEnabled(false)
+
+        et_num1.setText(rateName)
 
 
         btn_send.setOnClickListener {
@@ -41,6 +54,8 @@ class MainActivity : AppCompatActivity() {
             startActivity(Intent(this, this::class.java))
 
         }
+
+        startActivity(Intent(this,SettingPage::class.java))
 
 
     }
@@ -73,11 +88,11 @@ class MainActivity : AppCompatActivity() {
             et_num2.setText("")
         } else {
             if (num1.trim().isNotEmpty()) {
-                var num = num1.toFloat() * 0.288
+                var num = num1.toFloat() * rateNum!!.toFloat()
                 et_num2.setText(num.toString())
             } else {
                 if (num2.trim().isNotEmpty()) {
-                    var num = num2.toFloat() * (1 / 0.288)
+                    var num = num2.toFloat() * rateNum!!.toFloat()
                     et_num1.setText(num.toString())
                 } else {
                     Toast.makeText(this, "ใส่เลขก่อนนะ", Toast.LENGTH_LONG).show()
@@ -107,11 +122,12 @@ class MainActivity : AppCompatActivity() {
                 recyclerView.adapter = adapter
             }
         } catch (e: Exception){
-
+            startActivity(Intent(this,SettingPage::class.java))
         }
 
         et_num1.setText("")
         et_num2.setText("")
 
     }
+
 }

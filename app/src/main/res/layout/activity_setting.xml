@@ -8,41 +8,84 @@
         tools:context=".SettingPage">
 
     <include layout="@layout/toolbar_layout_clear"/>
+
+
     <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginTop="60dp">
 
-            <RadioGroup
+        <TextView
+                android:text="ตั้งค่า อัตราแลกเปลี่น"
+                android:textColor="#330A8E"
+                android:background="@drawable/box2"
+                android:textAlignment="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:padding="8dp"/>
+
+        <EditText
+                android:hint="ชื่อค่าเงินต่างประเทศ ; ตัวอย่าง บาทไทย (THB)"
+                android:id="@+id/et_rateName"
+                android:textColor="#330A8E"
+                android:background="@drawable/box2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:padding="8dp"/>
+
+
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp">
+
+            <TextView
+                    android:text="1 ค่าเงินต่างประเทศ"
+                    android:textColor="#330A8E"
+                    android:background="@drawable/box2"
+                    android:layout_weight="1"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                <Switch
-                        android:text="Switch"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" android:id="@+id/switch2"/>
-                <ToggleButton
-                        android:text="ToggleButton"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" android:id="@+id/toggleButton"/>
-                <CheckBox
-                        android:text="CheckBox"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" android:id="@+id/checkBox" />
-                <Button
-                        android:text="Button"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" android:id="@+id/button" />
-                <SeekBar
-                        style="@style/Widget.AppCompat.SeekBar.Discrete"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:max="10"
-                        android:progress="3"
-                        android:id="@+id/seekBar"/>
-                <SearchView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
-            </RadioGroup>
-    </LinearLayout>
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp"
+                    android:padding="8dp"/>
+            <ImageView
+                    android:background="@drawable/ic_swap_horiz_black_24dp"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"/>
+            <EditText
+                    android:hint="บาทไทย (THB)"
+                    android:id="@+id/et_rateNum"
+                    android:textColor="#330A8E"
+                    android:background="@drawable/box2"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="8dp"
+                    android:inputType="numberDecimal"/>
+        </LinearLayout>
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
+            <Button
+                    android:text="Save"
+                    android:textColor="#330A8E"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/btn_saveRate"
+                    android:layout_weight="1"
+                    android:layout_gravity="right"
+                    android:layout_margin="20dp"
+                    android:background="@drawable/button_selected"/>
+        </LinearLayout>
+
+    </LinearLayout>
 </android.support.constraint.ConstraintLayout>
