@@ -67,7 +67,6 @@ class MainActivity : AppCompatActivity() {
 
         var num1 = et_num1.text.toString()
         var num2 = et_num2.text.toString()
-        val df = DecimalFormat("#,###.###")
 
         if (num1.trim().isNotEmpty() && num2.trim().isNotEmpty()) {
             et_num1.setText("")
@@ -75,11 +74,11 @@ class MainActivity : AppCompatActivity() {
         } else {
             if (num1.trim().isNotEmpty()) {
                 var num = num1.toFloat() * 0.288
-                et_num2.setText(df.format(num))
+                et_num2.setText(num.toString())
             } else {
                 if (num2.trim().isNotEmpty()) {
                     var num = num2.toFloat() * (1 / 0.288)
-                    et_num1.setText(df.format(num))
+                    et_num1.setText(num.toString())
                 } else {
                     Toast.makeText(this, "ใส่เลขก่อนนะ", Toast.LENGTH_LONG).show()
                 }
@@ -89,8 +88,9 @@ class MainActivity : AppCompatActivity() {
 
     fun createHist() {
 
-        var num1 = et_num1.text.toString()
-        var num2 = et_num2.text.toString()
+        val df = DecimalFormat("#,###.##")
+        var num1 = (df.format(et_num1.text.toString().toFloat()))
+        var num2 = (df.format(et_num2.text.toString().toFloat()))
 
         if (num1.isEmpty() && num2.isEmpty()) {
 
