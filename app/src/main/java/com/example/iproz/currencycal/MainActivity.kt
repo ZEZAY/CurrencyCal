@@ -88,22 +88,26 @@ class MainActivity : AppCompatActivity() {
 
     fun createHist() {
 
-        val df = DecimalFormat("#,###.##")
-        var num1 = (df.format(et_num1.text.toString().toFloat()))
-        var num2 = (df.format(et_num2.text.toString().toFloat()))
+        try {
+            val df = DecimalFormat("#,###.##")
+            var num1 = (df.format(et_num1.text.toString().toFloat()))
+            var num2 = (df.format(et_num2.text.toString().toFloat()))
 
-        if (num1.isEmpty() && num2.isEmpty()) {
+            if (num1.toString().isEmpty() && num2.toString().isEmpty()) {
 
-        } else {
-            val histSET = Hist(
-                num1,
-                num2
-            )
-            hists.add(histSET)
+            } else {
+                val histSET = Hist(
+                    num1,
+                    num2
+                )
+                hists.add(histSET)
 
-            var adapter = Adapter(hists, this)
-            recyclerView.layoutManager = LinearLayoutManager(this)
-            recyclerView.adapter = adapter
+                var adapter = Adapter(hists, this)
+                recyclerView.layoutManager = LinearLayoutManager(this)
+                recyclerView.adapter = adapter
+            }
+        } catch (e: Exception){
+
         }
 
         et_num1.setText("")
