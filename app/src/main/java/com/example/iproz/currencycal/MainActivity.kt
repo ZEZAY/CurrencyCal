@@ -15,10 +15,9 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.toolbar_layout_clear.*
 import java.text.DecimalFormat
 
-fun Context.mainActivity(rateName: String,rateNum: String): Intent {
+fun Context.mainActivity(bundle: Bundle): Intent {
     return Intent(this, MainActivity::class.java).apply {
-        this.putExtra(rateName,rateName)
-        this.putExtra(rateNum,rateNum.toFloat())
+        this.putExtras(bundle)
     }
 }
 
@@ -27,8 +26,6 @@ class MainActivity : AppCompatActivity() {
     var hists = arrayListOf<Hist>()
     var rateName: String? = null
     var rateNum: String? = null
-//    val rateName = intent!!.getStringExtra("RNs")
-//    val rateNum = intent!!.getStringExtra("RNd")!!.toFloat()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         requestWindowFeature(Window.FEATURE_NO_TITLE)
@@ -39,24 +36,24 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayShowTitleEnabled(false)
 
-        et_num1.setText(rateName)
 
+        val rateName = intent.getStringExtra("RATE_MAME")
+        val rateNum = intent.getStringExtra("RATE_NUM").toFloat()
+
+        et_num1.setHint(rateName)
 
         btn_send.setOnClickListener {
 
-            changeCurrency()
+            changeCurrency(rateNum)
             createHist()
 
         }
 
         btn_clear.setOnClickListener{
             hists.clear()
-            startActivity(Intent(this, this::class.java))
+            recreate()
 
         }
-
-        startActivity(Intent(this,SettingPage::class.java))
-
 
     }
 
@@ -78,7 +75,7 @@ class MainActivity : AppCompatActivity() {
         overridePendingTransition(R.anim.slide_in_right,R.anim.slide_out_left )
     }
 
-    fun changeCurrency() {
+    fun changeCurrency(rateNum:Float) {
 
         var num1 = et_num1.text.toString()
         var num2 = et_num2.text.toString()
@@ -88,11 +85,11 @@ class MainActivity : AppCompatActivity() {
             et_num2.setText("")
         } else {
             if (num1.trim().isNotEmpty()) {
-                var num = num1.toFloat() * rateNum!!.toFloat()
+                var num = num1.toFloat() * rateNum
                 et_num2.setText(num.toString())
             } else {
                 if (num2.trim().isNotEmpty()) {
-                    var num = num2.toFloat() * rateNum!!.toFloat()
+                    var num = num2.toFloat() * (1/rateNum)
                     et_num1.setText(num.toString())
                 } else {
                     Toast.makeText(this, "ใส่เลขก่อนนะ", Toast.LENGTH_LONG).show()
